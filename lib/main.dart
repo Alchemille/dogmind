@@ -1,3 +1,4 @@
+import 'package:dog_translate/recorder.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -35,9 +36,6 @@ class MainPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: double.infinity,
-          ),
           ElevatedButton(
             onPressed: (){
               print("hey");
@@ -51,7 +49,8 @@ class MainPage extends StatelessWidget {
                 if (states.contains(MaterialState.pressed)) return Colors.red; // <-- Splash color
               }),
             ),
-          )
+          ),
+          SimpleRecorder()
         ],
       ),
     );
