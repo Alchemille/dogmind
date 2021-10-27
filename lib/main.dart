@@ -13,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
+      theme: ThemeData.dark(),
       home: Scaffold(
         backgroundColor: Colors.teal,
         appBar: AppBar(
@@ -32,27 +30,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: (){
-              print("hey");
-            },
-            child: const Icon(Icons.mic, color: Colors.teal, size: 50),
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all(CircleBorder()),
-              padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-              backgroundColor: MaterialStateProperty.all(Colors.white), // <-- Button color
-              overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-                if (states.contains(MaterialState.pressed)) return Colors.red; // <-- Splash color
-              }),
-            ),
-          ),
-          SimpleRecorder()
-        ],
-      ),
+      child: SimpleRecorder(),
     );
   }
 }

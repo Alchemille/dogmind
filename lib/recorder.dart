@@ -177,29 +177,31 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           margin: const EdgeInsets.all(3),
           padding: const EdgeInsets.all(3),
-          height: 80,
+          height: 100,
           width: double.infinity,
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Color(0xFFFAF0E6),
-            border: Border.all(
-              color: Colors.indigo,
-              width: 3,
-            ),
-          ),
-          child: Row(children: [
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
             ElevatedButton(
               onPressed: getRecorderFn(),
               //color: Colors.white,
               //disabledColor: Colors.grey,
-              child: Text(_mRecorder!.isRecording ? 'Stop' : 'Record'),
-            ),
-            SizedBox(
-              width: 20,
+              child: Icon(_mRecorder!.isRecording ? Icons.stop : Icons.mic, color: Colors.teal, size: 40),
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(CircleBorder()),
+                padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                backgroundColor: MaterialStateProperty.all(Colors.white), // <-- Button color
+                overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                  if (states.contains(MaterialState.pressed)) return Colors.red; // <-- Splash color
+                }),
+              ),
             ),
             Text(_mRecorder!.isRecording
                 ? 'Recording in progress'
@@ -209,25 +211,25 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
         Container(
           margin: const EdgeInsets.all(3),
           padding: const EdgeInsets.all(3),
-          height: 80,
+          height: 100,
           width: double.infinity,
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Color(0xFFFAF0E6),
-            border: Border.all(
-              color: Colors.indigo,
-              width: 3,
-            ),
-          ),
-          child: Row(children: [
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
             ElevatedButton(
               onPressed: getPlaybackFn(),
               //color: Colors.white,
               //disabledColor: Colors.grey,
-              child: Text(_mPlayer!.isPlaying ? 'Stop' : 'Play'),
-            ),
-            SizedBox(
-              width: 20,
+              child: Icon(_mPlayer!.isPlaying ? Icons.play_arrow : Icons.stop, color: Colors.teal, size: 40),
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(CircleBorder()),
+                padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                backgroundColor: MaterialStateProperty.all(Colors.white), // <-- Button color
+                overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                  if (states.contains(MaterialState.pressed)) return Colors.red; // <-- Splash color
+                }),
+              ),
             ),
             Text(_mPlayer!.isPlaying
                 ? 'Playback in progress'
